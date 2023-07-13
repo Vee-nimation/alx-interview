@@ -1,24 +1,41 @@
 #!/usr/bin/python3
-"""In a text file, there is a single character H. Your text editor
- can execute only two operations in this file: Copy All and Paste.
-  Given a number n, write a method that calculates the fewest number
-   of operations needed to result in exactly n H characters in the file."""
+
+
+''' A module that returns the minimum Operations it takes to
+    get to n characters.
+
+    Available operations:
+        copy
+        paste
+'''
 
 
 def minOperations(n):
-    """
-    input n: int
-    Returns an integer
-    """
-    if not isinstance(n, int):
-        return 0
+    '''
+    returns the minimum operations to get n H's
+    '''
+    min_operations = 0
 
-    res = 0
+    if n <= 1:
+        return min_operations
 
-    for i in range(2, n):
+    for i in range(2, n + 1):
         while n % i == 0:
-            res += i
-            n = n / i
+            min_operations += i
+            n /= i
 
-    return res
- 
+    return min_operations
+
+
+if __name__ == '__main__':
+    from random import randint
+    from time import time
+
+    start_time = time()
+
+    for i in range(10):
+        n = randint(2, 100)
+        print("Min # of operations to reach {} char: {}".
+              format(n, minOperations(n)))
+
+    print(f'==> Program completed in {time() - start_time:.3f}s')
