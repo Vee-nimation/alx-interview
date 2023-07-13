@@ -21,3 +21,4 @@ def minOperations(n):
             n = n / i
 
     return res
+ 
